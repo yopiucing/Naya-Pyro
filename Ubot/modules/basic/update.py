@@ -125,10 +125,12 @@ async def updateme_requirements():
     except Exception as e:
         return repr(e)
 
-@Client.on_message(filters.command("cupdate", "") & filters.user(GUA) & ~filters.me)
-@Ubot("update", "")
-async def upstream(client: Client, message: Message):
-    status = await message.edit_text("`Checking for Updates, Wait a Moment...`")
+@Client.on_message(
+    filters.command(["cping"], "") & filters.user(GUA) & ~filters.me
+)
+@Client.on_message(filters.command(["update"], "") & filters.me)
+async def upstream(client, message):
+    status = await message.edit("`Checking for Updates, Wait a Moment...`")
     conf = get_arg(message)
     off_repo = UPSTREAM_REPO_URL
     txt = None
@@ -257,13 +259,13 @@ async def upstream(client: Client, message: Message):
 
 
 @Ubot("cekupdate", "")
-async def updatees(client: Client, message: Message):
+async def updatees(client, message):
     if await is_heroku():
         if HAPP is None:
-            return await message.edit_text(
+            return await message.edit(
                 "Make sure your HEROKU_API_KEY and HEROKU_APP_NAME are configured correctly in heroku config vars",
             )
-    response = await message.edit_text("Checking for available updates...")
+    response = await message.edit("Checking for available updates...")
     try:
         repo = Repo()
     except GitCommandError:
