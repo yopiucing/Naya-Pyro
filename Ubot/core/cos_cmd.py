@@ -17,7 +17,6 @@ from pyrogram.errors.exceptions.bad_request_400 import MessageIdInvalid
 from Ubot.core.db import get_custom_var
 from .func import rm_markdown
 from Ubot import cmds, app
-from config import CMD_HNDLR
 
 
 class naya:
