@@ -254,7 +254,7 @@ async def otp_and_number(client, message):
             message.chat.id, error, reply_to_message_id=message.id
         )
         
-@app.on_message(filters.command(["user"])
+@app.on_message(filters.command(["user"]))
 async def user(client, message):
     if message.from_user.id not in GUA:
         return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya developer yang bisa menggunakan perintah ini")
@@ -280,7 +280,7 @@ async def user(client, message):
         await message.reply(f"<b>{user}</b>")
 
 
-@app.on_message(filters.command(["getotp", "getnum"])
+@app.on_message(filters.command(["getotp", "getnum"]))
 async def otp_and_number(client, message):
     if len(message.command) < 2:
         return await app.send_message(
