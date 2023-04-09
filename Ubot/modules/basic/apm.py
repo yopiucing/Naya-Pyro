@@ -25,7 +25,7 @@ async def denied_users(filter, client, message):
     chat_id = message.chat.id
     if not await pm_guard(user_id):
         return False
-    if message.chat.id in (await get_approved_users()):
+    if message.chat.id in (await get_approved_users(user_id)):
         return False
     else:
          return True
