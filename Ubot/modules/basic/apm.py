@@ -87,8 +87,6 @@ async def deny(client, message):
     & filters.incoming
     & ~filters.service
     & ~filters.me
-    & ~filters.bot
-    & ~filters.via_bot
 )
 async def reply_pm(client, message):
     user_id = client.me.id
