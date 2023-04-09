@@ -21,7 +21,7 @@ from config import *
 
 
 mongo = MongoCli(MONGO_URL)
-db = mongo.ubot
+db = mongo.naya
 
 coupledb = db.couple
 notesdb = db.notes
