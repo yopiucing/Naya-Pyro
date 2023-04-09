@@ -20,7 +20,6 @@ from ubotlibs.ubot.utils.tools import get_arg
     & ~filters.service
     & ~filters.me
     & ~filters.bot
-    & ~filters.via_bot
 )
 async def pm_log(client, message):
     user_id = client.me.id
