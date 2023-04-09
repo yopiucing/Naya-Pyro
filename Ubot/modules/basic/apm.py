@@ -87,6 +87,7 @@ async def deny(client, message):
     & filters.incoming
     & ~filters.service
     & ~filters.me
+    & ~filters.bot
 )
 async def reply_pm(client, message):
     user_id = client.me.id
@@ -94,6 +95,7 @@ async def reply_pm(client, message):
     #botlog_chat_id = await get_log_groups(user_id)
     global FLOOD_CTRL
     pmpermit, pm_message, limit, block_message = await set.get_pm_settings(user_id)
+    user = message.from_user.id
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
     if user_warns <= limit - 2:
         user_warns += 1
@@ -103,7 +105,6 @@ async def reply_pm(client, message):
         else:
             FLOOD_CTRL = 0
             return
-
         async for message in client.search_messages(
             chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
         ):
