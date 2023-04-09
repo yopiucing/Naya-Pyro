@@ -26,13 +26,6 @@ async def pm_permit(client, message):
     elif arg == "on":
         await set.set_pm(user_id, True)
         await message.edit("**AntiPM Diaktifkan**")
-    else:
-        await message.edit("**Gunakan format**:\n `antipm` on atau off")
-    apaan = await pm_guard(user_id)
-    if apaan:
-        await message.edit("**AntiPM Dalam Keadaaan Hidup**")
-    else:
-        await message.edit("**AntiPM Dalam Keadaan Mati**")
 
         
 @Ubot("setmsg", "")
