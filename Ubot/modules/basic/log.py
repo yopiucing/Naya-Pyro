@@ -13,7 +13,7 @@ from pyrogram.types import Message
 from . import *
 from Ubot.core.db import *
 from ubotlibs.ubot.utils.tools import get_arg
-"""
+
 @Client.on_message(
     filters.private
     & filters.incoming
@@ -32,7 +32,7 @@ async def pm_log(client, message):
                 f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {biji}\n<b> • User ID :</b> <code>{user}</code>\n<b> • PESAN :</b> <code>{sempak}</code>\n ",
                 parse_mode=enums.ParseMode.HTML,
             )
-"""
+
 @Client.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot)
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
