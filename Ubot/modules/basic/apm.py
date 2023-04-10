@@ -120,9 +120,8 @@ async def reply_pm(client, message):
                 await message.delete()
             await message.reply(pm_message, disable_web_page_preview=True)
             return
-        await message.reply(
-            block_message,
-            disable_web_page_preview=True)
-        await client.block_user(message.chat.id)
-            USERS_AND_WARNS.update({user: 0})
+            await message.reply(block_message,
+                disable_web_page_preview=True)
+            await client.block_user(message.chat.id)
+                USERS_AND_WARNS.update({user: 0})
 
