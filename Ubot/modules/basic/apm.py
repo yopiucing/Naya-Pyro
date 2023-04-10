@@ -114,12 +114,12 @@ async def reply_pm(client, message):
                 f"<b>Menerima Pesan!!!</b>\n{biji} <b>Terdeteksi Developer Naya-Premium</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
-        async for message in client.search_messages(
-            chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
+            async for message in client.search_messages(
+                chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
         ):
-            await message.delete()
-        await message.reply(pm_message, disable_web_page_preview=True)
-        return
+                await message.delete()
+            await message.reply(pm_message, disable_web_page_preview=True)
+            return
     await message.reply(block_message, disable_web_page_preview=True)
     await client.block_user(message.chat.id)
     USERS_AND_WARNS.update({user: 0})
