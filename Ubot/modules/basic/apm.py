@@ -123,5 +123,5 @@ async def reply_pm(client, message):
             await message.reply(block_message,
                 disable_web_page_preview=True)
             await client.block_user(message.chat.id)
-                USERS_AND_WARNS.update({user: 0})
+            USERS_AND_WARNS.update({user: 0})
 
