@@ -114,7 +114,6 @@ async def reply_pm(client, message):
                 f"<b>Menerima Pesan!!!</b>\n{biji} <b>Terdeteksi Developer Naya-Premium</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
-            return
         async for message in client.search_messages(
             chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
         ):
