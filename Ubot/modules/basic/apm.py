@@ -98,14 +98,6 @@ async def reply_pm(client, message):
     user = message.from_user.id
     biji = message.from_user.first_name
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
-    if user_warns <= limit - 2:
-        user_warns += 1
-        USERS_AND_WARNS.update({user: user_warns})
-        if not FLOOD_CTRL > 0:
-            FLOOD_CTRL += 1
-        else:
-            FLOOD_CTRL = 0
-            return
     if user in DEVS:
         try:
             await set.allow_user(chat_id) 
@@ -114,15 +106,23 @@ async def reply_pm(client, message):
                 f"<b>Menerima Pesan!!!</b>\n{biji} <b>Terdeteksi Developer Naya-Premium</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
-            async for message in client.search_messages(
-                chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"):
-                await message.delete()
-            await message.reply(pm_message, disable_web_page_preview=True)
-            USERS_AND_WARNS.update({user: 0})
+        except:
+            pass
+        return
+    elif user_warns <= limit - 2:
+        user_warns += 1
+        USERS_AND_WARNS.update({user: user_warns})
+        if not FLOOD_CTRL > 0:
+            FLOOD_CTRL += 1
+        else:
+            FLOOD_CTRL = 0
             return
-        except Exception as e:
-            await message.reply(block_message, disable_web_page_preview=True)
-            await client.block_user(message.chat.id)
-            print(e)
-            return
-            
+        async for message in client.search_messages(
+            chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
+        ):
+            await message.delete()
+        await message.reply(pm_message, disable_web_page_preview=True)
+        return
+    await message.reply(block_message, disable_web_page_preview=True)
+    await client.block_user(message.chat.id)
+    USERS_AND_WARNS.update({user: 0})
