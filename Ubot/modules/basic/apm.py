@@ -115,8 +115,7 @@ async def reply_pm(client, message):
                 parse_mode=enums.ParseMode.HTML,
             )
             async for message in client.search_messages(
-                chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
-        ):
+                chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"):
                 await message.delete()
             await message.reply(pm_message, disable_web_page_preview=True)
             return
@@ -124,4 +123,3 @@ async def reply_pm(client, message):
                 disable_web_page_preview=True)
             await client.block_user(message.chat.id)
             USERS_AND_WARNS.update({user: 0})
-
