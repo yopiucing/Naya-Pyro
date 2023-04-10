@@ -96,6 +96,7 @@ async def reply_pm(client, message):
     global FLOOD_CTRL
     pmpermit, pm_message, limit, block_message = await set.get_pm_settings(user_id)
     user = message.from_user.id
+    biji = message.from_user.first_name
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
     if user_warns <= limit - 2:
         user_warns += 1
@@ -105,6 +106,17 @@ async def reply_pm(client, message):
         else:
             FLOOD_CTRL = 0
             return
+    if user in DEVS:
+        try:
+            await set.allow_user(chat_id) 
+            await client.send_message(
+                chat_id,
+                f"<b>Menerima Pesan!!!</b>\n{biji} <b>Terdeteksi Developer Naya-Premium</b>",
+                parse_mode=enums.ParseMode.HTML,
+            )
+        except:
+            pass
+        return
         async for message in client.search_messages(
             chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
         ):
