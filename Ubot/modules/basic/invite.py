@@ -74,6 +74,6 @@ add_command_help(
     [
         [f"invitelink","mengambil link group private. [Memerlukan wewenang Admin]",],
         [f"invite @username", "invite pengguna ke group."],
-        [f"inviteall @username", "menambah member group secara masal (akun anda mungkin akan terbatasi/limit)."],
+        [f"inviteall @username", "menambah member group secara masal (Buat ID 5 atau 6 Gua Saranin Gausah Kalo Akun Lu ga Mao Deak)."],
     ],
 )
