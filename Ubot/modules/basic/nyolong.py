@@ -16,7 +16,7 @@ from pyrogram.errors import RPCError
 from pyrogram.types import *
 
 from ubotlibs.ubot.utils import get_arg
-from ubot.core.db import get_botlog
+from Ubot.core.db import get_botlog
 from . import *
 
 @Ubot("copy", "")
