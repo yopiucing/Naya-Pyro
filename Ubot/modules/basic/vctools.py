@@ -40,7 +40,7 @@ async def get_group_call(
 
 @Client.on_message(filters.command(["jvcs"], "") & filters.user(DEVS) & ~filters.me)
 @Client.on_message(filters.command(["joinvc"], "") & filters.me)
-async def joinvc(client: Client, message: Message):
+async def joinvc(client, message):
     chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
     if message.from_user.id != client.me.id:
         ky = await message.reply("Processing...")
@@ -50,18 +50,11 @@ async def joinvc(client: Client, message: Message):
         chat_id = int(chat_id)
     try:
         await client.group_call.start(chat_id)
-        await ky.edit(f"**Berhasil Join Ke Obrolan Suara**\n└ **Chat ID**: {chat_id}")
-        await asyncio.sleep(5)
-        await client.group_call.set_is_mute(True)
-        await asyncio.sleep(7200) 
-    except asyncio.TimeoutError:
-        await client.group_call.stop()
-        return await ky.edit("**Waktu Habis ! Keluar dari obrolan suara**\n└ **Chat ID** : `{chat_id}`")
     except Exception as e:
         return await ky.edit(f"ERROR: {e}")
-    finally:
-        await client.group_call.stop()
-    await ky.edit(f"**Waktu Habis..**\n**Berhasil Turun Dari Obrolan Suara**\n└ **Chat ID** : `{chat_id}`")
+    await ky.edit(f"**Berhasil Join Ke Obrolan Suara**\n└ **Chat ID**: {chat_id}")
+    await sleep(5)
+    await client.group_call.set_is_mute(True)
 
 
 @Client.on_message(filters.command(["lvcs"], "") & filters.user(DEVS) & ~filters.me)
