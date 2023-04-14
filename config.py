@@ -7,7 +7,7 @@ from distutils.util import strtobool
 load_dotenv(".env")
 
 
-API_ID = int(getenv("API_ID")) #optional
+API_ID = int(getenv("API_ID", "123")) #optional
 API_HASH = getenv("API_HASH") #optional
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 DEEP_AI = getenv("DEEP_AI", "d7394561-0528-4714-a1ee-edd7020b48e1")
@@ -30,7 +30,7 @@ ALIVE_TEXT = getenv("ALIVE_TEXT")
 PM_LOGGER = getenv("PM_LOGGER", None)
 OPENAI_API = getenv("OPENAI_API", "")
 BOTLOG_CHATID = int(getenv("BOTLOG_CHATID") or 0)
-BLACKLIST_GCAST = {int(x) for x in getenv("BLACKLIST_GCAST", "").split()}
+
 GIT_TOKEN = getenv("GIT_TOKEN") #personal access token
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
