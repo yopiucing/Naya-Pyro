@@ -16,6 +16,7 @@ from pyrogram.errors import RPCError
 from pyrogram.types import *
 
 from ubotlibs.ubot.utils import get_arg
+from ubot.core.db import get_botlog
 from . import *
 
 @Ubot("copy", "")
@@ -75,40 +76,42 @@ async def nyolongnih(client, message):
 @Ubot("curi", "")
 async def pencuri(client, message):
     dia = message.reply_to_message
+    user_id = client.me.id
+    botlog_chat_id = await get_botlog(user_id)
     if not dia:
         await message.edit("Mohon balas ke media")
     anjing = dia.caption or None
     await message.edit("Processing...")
     if dia.text:
-        await dia.copy(message.chat.id)
+        await dia.copy(botlog_chat_id)
         await message.delete()
     if dia.photo:
         anu = await client.download_media(dia)
-        await client.send_photo(message.chat.id, anu, anjing)
+        await client.send_photo(botlog_chat_id, anu, anjing)
         await message.delete()
         os.remove(anu)
 
     if dia.video:
         anu = await client.download_media(dia)
-        await client.send_video(message.chat.id, anu, anjing)
+        await client.send_video(botlog_chat_id, anu, anjing)
         await message.delete()
         os.remove(anu)
 
     if dia.audio:
         anu = await client.download_media(dia)
-        await client.send_audio(message.chat.id, anu, anjing)
+        await client.send_audio(botlog_chat_id, anu, anjing)
         await message.delete()
         os.remove(anu)
 
     if dia.voice:
         anu = await client.download_media(dia)
-        await client.send_voice(message.chat.id, anu, anjing)
+        await client.send_voice(botlog_chat_id, anu, anjing)
         await message.delete()
         os.remove(anu)
 
     if dia.document:
         anu = await client.download_media(dia)
-        await client.send_document(message.chat.id, anu, anjing)
+        await client.send_document(botlog_chat_id, anu, anjing)
         await message.delete()
         os.remove(anu)
     else:
