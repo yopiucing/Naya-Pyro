@@ -23,13 +23,13 @@ async def sg(client: Client, message: Message):
             return await lol.edit(f"`Please specify a valid user!`")
     bot = "SangMata_beta_bot"
     try:
-        await client.send_message(bot, f"/search_id {user.id}")
+        await client.send_message(bot, f"{user.id}")
     except YouBlockedUser:
         await client.unblock_user(bot)
-        await client.send_message(bot, f"/search_id {user.id}")
+        await client.send_message(bot, f"{user.id}")
     await asyncio.sleep(1)
 
-    async for stalk in client.search_messages(bot, query="Name", limit=1):
+    async for stalk in client.search_messages(bot, query="History", limit=1):
         if not stalk:
             await message.edit_text("**Orang Ini Belum Pernah Mengganti Namanya**")
             return
@@ -37,7 +37,7 @@ async def sg(client: Client, message: Message):
             await message.edit(stalk.text)
             await stalk.delete()
 
-    async for stalk in client.search_messages(bot, query="Username", limit=1):
+    async for stalk in client.search_messages(bot, query="History", limit=1):
         if not stalk:
             return
         elif stalk:
