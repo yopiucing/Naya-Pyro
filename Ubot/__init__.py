@@ -34,10 +34,12 @@ scheduler = AsyncIOScheduler()
 StartTime = time.time()
 START_TIME = datetime.now()
 
-
+"""
 LOOP = asyncio.get_event_loop_policy()
 event_loop = LOOP.get_event_loop()
 asyncio.set_event_loop(event_loop)
+"""
+loop = asyncio.get_event_loop()
 
 
 class Bot(Client):
