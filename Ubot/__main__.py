@@ -60,7 +60,7 @@ async def start_bot():
     await aiosession.close()
     await app.stop()
     
-event_loop.run_until_complete(start_bot())
+loop.run_until_complete(start_bot())
 
 
 """
