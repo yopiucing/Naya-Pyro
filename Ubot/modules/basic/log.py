@@ -33,7 +33,6 @@ async def pm_log(client, message):
                 parse_mode=enums.ParseMode.HTML,
             )
 
-"""
 @Client.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot)
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
@@ -50,7 +49,6 @@ async def log_tagged_messages(client, message):
         parse_mode=enums.ParseMode.HTML,
         disable_web_page_preview=True,
     )
-"""
 
 @Ubot("setlog", "")
 async def set_log(client, message):
