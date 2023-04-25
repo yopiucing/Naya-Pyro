@@ -55,7 +55,7 @@ async def buat_log(bot):
         await bot.send_message(botlog_chat_id, message_text)
         await asyncio.sleep(1)
         
-        await usersdb.users.update_one(
+        await usersdb.users.insert_one(
             {"user_id": user_id},
             {"$set": {"bot_log_group_id": botlog_chat_id}},
             upsert=True
