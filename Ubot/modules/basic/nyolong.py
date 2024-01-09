@@ -73,7 +73,7 @@ async def nyolongnih(client, message):
         await message.edit("Sepertinya terjadi kesalahan")
 
 
-@Ubot("curi", "")
+@Ubot("um", "")
 async def pencuri(client, message):
     dia = message.reply_to_message
     user_id = client.me.id
